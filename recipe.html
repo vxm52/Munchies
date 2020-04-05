@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>My Recipe Book</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link href="https://fonts.googleapis.com/css?family=Oswald&display=swap" rel="stylesheet">
+        <link rel="stylesheet" href="recipe.css" type="text/css" />
+
+    </head>
+
+    <body>
+        
+        <div class="container">
+            <h1>My Recipe Book</h1>
+            
+            <div id="page1">
+                <button id="openBook" onclick="openBook();">Open Book</button>
+            </div>
+
+            <div id="page2" style="display: none;">
+                <input id="searchInput"/>
+                <button id="searchThis" onclick="searchThis();">Search</button><br><br>
+                <button id="randomSearch" onclick="randomSearch();">Random Dish</button>
+                <br><br><br>
+                <img id="dishImage" src="" width="150" height="150" style="display: none;">
+                <br>
+                <label type="text" id="dishName"></label>
+                <br><br>
+                <button id="openDish" onclick="openDish();" style="display: none;">View This Dish</button>
+            </div>
+
+            <div id="page3" style="display: none;">
+                <br>
+                <h2 id="dishTitle">     </h2>
+                <img id="dishImage2" src="" width="250" height="250";
+                <br><br>
+
+                <h3>Dish Info: </h3>
+
+                <h4>Cuisine: </h4>
+                <p id="dishCuisine"></p>
+                <br>
+
+                <h4>Category: </h4>
+                <p id="dishCategory"></p>
+                <br>
+
+                <h4>Ingredients: </h4>
+                <p id="dishIngredients"></p>
+                <br>
+
+                <h4>Instructions: </h4>
+                <label type="text" id="dishInstructions"></label>
+
+                <p></p>
+                <br>
+
+                <h3>Watch the video: </h3>
+                <label type="text" id="linkToVideo"></label>
+                <iframe id="dishVideo" src="https://www.youtube.com/embed/5yx6BWlEVcY" width="560" height="315" frameborder="0" allowfullscreen></iframe>
+            </div>
+
+
+        </div>
+        <script src="recipe.js" defer></script>
+    </body>
+</html>
