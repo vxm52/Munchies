@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+<head>
+  <meta charset="utf-8">
+  <title>Dish Info</title>
+  <link rel="stylesheet" href="recipe.css" type="text/css" />
+</head>
+
+<script type="text/javascript">
+
+  var api = ""
+
+  var query_request = new XMLHttpRequest();
+  var urlParams = new URLSearchParams(window.location.search);
+
+
+  let idMeal = urlParams.get('idMeal')
+  api = `https://themealdb.com/api/json/v1/1/lookup.php?i=${idMeal}`
+
+
+  query_request.open("GET", api, true);
+
+  query_request.onload = function() {
+    let data = JSON.parse(this.response);
+
+    if (query_request.status == 200) {
+      console.log(`Retrieved: "${data}`);
+      //strMeal is the Dish Name element in the JSON array
+    } else {
+      console.log(`Error occurred. Status: ${query_request.status}`);
+      return
+    }
+
+    var meal = data.meals[0]
+    var dishImage2 = document.querySelector("#dishImage2")
+    dishImage2.src = meal.strMealThumb
+
+    var dishVideo = document.querySelector("#dishVideo")
+    dishVideo.src = "https://www.youtube.com/embed/" + meal.strYoutube.split("?v=")[1]
+
+    var dishCuisine = document.querySelector("#dishCuisine")
+    dishCuisine.textContent = meal.strArea
+
+    var dishCategory = document.querySelector("#dishCategory")
+    dishCategory.textContent = meal.strCategory
+
+    var dishIngredients = document.querySelector("#dishIngredients")
+
+    var ingredients = ""
+
+    for (var i=1;i<20;i++) {
+      let measure = "strMeasure"+i
+      let key = "strIngredient"+i
+      let quantity = meal[measure]
+      let ingredient = meal[key]
+      if (ingredient) {
+        // ingredients = quantity +" "+ ingredients + ";" + quantity + " "+ ingredient
+         ingredients += '<div class="col-2"><h4>'+ingredient+'</h4><p>'+quantity+'</p></div>'
+      }
+    }
+    dishIngredients.innerHTML= ingredients
+    // dishIngredients.textContent = ingredients
+
+    var dishInstructions = document.querySelector("#dishInstructions")
+    // str = meal.strInstructions.replace(/\r\n/g,'</br>')
+    // str = meal.strInstructions.replace(/\n/g,'</br>')
+    dishInstructions.textContent =  meal.strInstructions
+
+  }
+  query_request.send();
+
+</script>
+<body>
+
+  <div id="page3">
+    <div class="container">
+      <h1>My Recipe Book</h1>
+    <br>
+    <h2 id="dishTitle"> </h2>
+    <img id="dishImage2" src="" width="250" height="250" ; <br><br>
+
+    <h3>Dish Info: </h3>
+
+    <h4>Cuisine: </h4>
+    <p id="dishCuisine"></p>
+    <br>
+
+    <h4>Category: </h4>
+    <p id="dishCategory"></p>
+    <br>
+
+    <h4>Ingredients: </h4>
+    <h5 id="dishIngredients"></h5>
+
+    <br>
+
+    <h4>Instructions: </h4>
+    <label type="text" id="dishInstructions"></label>
+
+    <p></p>
+    <br>
+
+    <h3>Watch the video: </h3>
+    <label type="text" id="linkToVideo"></label>
+    <iframe id="dishVideo" src="https://www.youtube.com/embed/5yx6BWlEVcY" width="560" height="315" frameborder="0" allowfullscreen></iframe>
+  </div>
+  </div>
+
+  <script src="recipe.js" defer></script>
+</body>
+
+</html>

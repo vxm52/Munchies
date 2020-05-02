@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+<head>
+  <meta charset="utf-8">
+  <title>My Recipe Book</title>
+  <link rel="stylesheet" href="recipe.css" type="text/css" />
+  <style type="text/css">
+  body{
+    background: url(cake.jpg);
+    background-size: cover;
+    /* opacity: 0.5;
+    z-index: -1; */
+  }
+  .container {
+      background: #fff;
+      /* border: dashed; */
+      /* border-color: #a0aeba; */
+      border-radius: 5px;
+      padding: 2.5em;
+      margin: auto;
+      width: 30%;
+      box-sizing: inherit;
+      box-shadow: 0px 0px 15px #545454;
+  }
+
+  </style>
+</head>
+
+<body>
+  <h1>My Recipe Book</h1>
+  <div id="page1">
+    <div class="container">
+      <div class="account">
+        <div>
+          <span><label>User Name:</label></span><br>
+          <span><input type="text" name="username" class="username"></span>
+
+        </div>
+        <div>
+          <br>
+          <span><label>Password: </label></span><br>
+          <span><input name="password" type="password" class="password"></span>
+
+        </div>
+        <div class="sign">
+          <br>
+          <button type="button" value="LOG IN" id="login" class="submit" onclick="logIn();">Log In</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="recipe.js" defer></script>
+</body>
+
+</html>

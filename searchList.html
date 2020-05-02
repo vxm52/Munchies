@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+<head>
+  <meta charset="utf-8">
+  <title>My Recipe Book</title>
+  <link rel="stylesheet" href="recipe.css" type="text/css" />
+</head>
+
+<body>
+  <div class="container">
+    <h1>My Recipe Book</h1>
+    <div id="searchResults">
+
+    </div>
+    <button id="openDish" onclick="openDish();" style="display: none;">View This Dish</button>
+  </div>
+  <script src="recipe.js" defer></script>
+
+
+  <script type="text/javascript">
+
+    var api = ""
+
+    let searchResult = document.querySelector("#searchResults")
+    var query_request = new XMLHttpRequest();
+
+    var urlParams = new URLSearchParams(window.location.search);
+
+    if (urlParams.get('random')) {
+      api = "https://www.themealdb.com/api/json/v1/1/random.php"
+    } else {
+      let dishToSearch = urlParams.get('s')
+      api = `https://www.themealdb.com/api/json/v1/1/search.php?s=${dishToSearch}`
+    }
+
+    query_request.open("GET", api, true);
+
+    query_request.onload = function() {
+      let data = JSON.parse(this.response);
+
+      if (query_request.status == 200) {
+        console.log(`Retrieved: "${data}`);
+        //strMeal is the Dish Name element in the JSON array
+      } else {
+        console.log(`Error occurred. Status: ${query_request.status}`);
+      }
+
+      data.meals.forEach(function(meal) {
+        var image = document.createElement("img")
+        image.src = meal.strMealThumb
+        image.width = 200
+        var wrapper = document.createElement("div");
+        wrapper.setAttribute('class', 'col');
+        var paragraph = document.createElement("h3");
+        var txt = document.createTextNode(meal.strMeal);
+        var link = document.createElement("a")
+        link.appendChild(txt)
+        link.href = "details.html?idMeal=" + meal.idMeal
+        paragraph.appendChild(link)
+        wrapper.appendChild(image);
+        wrapper.appendChild(paragraph);
+        searchResult.appendChild(wrapper)
+      })
+
+    }
+    query_request.send();
+
+  </script>
+</body>
+
+
+
+</html>
