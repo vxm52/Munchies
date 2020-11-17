@@ -33,6 +33,10 @@
     }
 
     var meal = data.meals[0]
+
+    var dishTitle = document.querySelector("#dishTitle")
+    dishTitle.textContent = meal.strMeal
+
     var dishImage2 = document.querySelector("#dishImage2")
     dishImage2.src = meal.strMealThumb
 
@@ -77,8 +81,13 @@
     <div class="container">
       <h1>My Recipe Book</h1>
     <br>
+    <img id="dishImage2" src="" width="250" height="250" ; />
+    <br>
+
     <h2 id="dishTitle"> </h2>
-    <img id="dishImage2" src="" width="250" height="250" ; <br><br>
+
+    <hr class="dotted">
+    <br>
 
     <h3>Dish Info: </h3>
 
@@ -92,13 +101,13 @@
 
     <h4>Ingredients: </h4>
     <h5 id="dishIngredients"></h5>
-
     <br>
 
     <h4>Instructions: </h4>
     <label type="text" id="dishInstructions"></label>
+    <br>
 
-    <p></p>
+    <hr class="dotted secondLine">
     <br>
 
     <h3>Watch the video: </h3>
