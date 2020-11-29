@@ -3,16 +3,21 @@
 
 <head>
   <meta charset="utf-8">
-  <title>My Recipe Book</title>
+  <title>Recipe Book</title>
   <link rel="stylesheet" href="recipe.css" type="text/css" />
 </head>
 
 <body>
   <div class="container">
-    <h1>My Recipe Book</h1>
-    <div id="searchResults">
-
+    <div class="headerBar">
+      <h1>Recipe Book</h1>
     </div>
+    <hr class="dotted">
+    <br><br><br>
+
+    <div id="searchResults">
+    </div>
+
     <button id="openDish" onclick="openDish();" style="display: none;">View This Dish</button>
   </div>
   <script src="recipe.js" defer></script>
@@ -47,20 +52,20 @@
       }
 
       data.meals.forEach(function(meal) {
-        var image = document.createElement("img")
-        image.src = meal.strMealThumb
-        image.width = 200
+        var image = document.createElement("img");
+        image.src = meal.strMealThumb;
+        image.width = 200;
         var wrapper = document.createElement("div");
         wrapper.setAttribute('class', 'col');
         var paragraph = document.createElement("h3");
         var txt = document.createTextNode(meal.strMeal);
-        var link = document.createElement("a")
-        link.appendChild(txt)
-        link.href = "details.html?idMeal=" + meal.idMeal
-        paragraph.appendChild(link)
+        var link = document.createElement("a");
+        link.appendChild(txt);
+        link.href = "details.html?idMeal=" + meal.idMeal;
+        paragraph.appendChild(link);
         wrapper.appendChild(image);
         wrapper.appendChild(paragraph);
-        searchResult.appendChild(wrapper)
+        searchResult.appendChild(wrapper);
       })
 
     }
