@@ -40,7 +40,7 @@ function logIn() {
 First API that acts as recipe search engine (TheMealDB.com)
 */
 function searchThis() {
-  let dishToSearch = document.querySelector("#searchInput").value
+  let dishToSearch = document.querySelector("#searchInput").value;
   location.href = "searchList.html?s=" + dishToSearch;
 }
 

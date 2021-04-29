@@ -109,10 +109,11 @@ a {
   /* border-color: #a0aeba; */
   border-radius: 5px;
   padding: 2.5em;
+  padding-bottom: 5em;
   margin: auto;
   width: 70%;
   box-sizing: inherit;
-  box-shadow: 0px 0px 15px #545454;
+  box-shadow: 0px 5px 15px #545454;
 }
 
 #dishTitle {
